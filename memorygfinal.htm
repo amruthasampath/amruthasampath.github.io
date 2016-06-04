@@ -1,0 +1,131 @@
+<DOCTYPE! html>
+<html>
+<head>
+<style>
+.button {
+    background-color: #4CAF50; /* Green */
+    border: 1px solid black;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: #f44336;} /* Red */ 
+.button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+.button5 {background-color: #555555;} /* Black */
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+</style>
+<script>
+ var numset=new Array(2,1,4,6,7,5,3,8);
+var newnum=new Array();
+var count=new Array();
+var arrt=new Array();
+var f=0,k=0,points=0;
+var x=120000;
+
+function disp()
+{
+
+var minutes=Math.floor(x/(60*1000));
+var seconds=Math.floor((x%(60*1000))/1000);
+document.getElementById("ss").innerHTML="TIME LEFT:"+minutes+":"+seconds;
+x-=1000;
+setTimeout(function(){disp()},1000);
+}
+function Assign()
+{
+var index,num=0;
+var x=Math.floor((Math.random()*8)+1);
+for(index=x;index<8;index++)
+{ newnum[num]=numset[index];
+num++;
+}
+for(index=0;index<x;index++)
+{ newnum[num]=numset[index];
+num++;
+}
+num=15;
+for(index=x;index<8;index++)
+{ newnum[num]=numset[index];
+num--;
+}
+for(index=0;index<x;index++)
+{ newnum[num]=numset[index];
+num--;
+}
+}
+function myfunc1(q,x)
+{
+document.getElementById(q).value=newnum[x-1];
+
+var myvar=setTimeout(mytion(q,x),2000);
+
+count[k]=newnum[x-1];
+k++;
+arrt[f]=q;
+f++;
+
+}
+
+function mytion(p,x)
+ {
+if (k!=0 && count[k-1]!=newnum[x-1] && count[k-1]!=count[k-2])
+      document.getElementById(arrt[f-1]).value =" ";
+      else if (count[k-1]==newnum[x-1])
+      {
+      document.getElementById(p).value = newnum[x-1];
+      document.getElementById(p).setAttribute("class","buttonstyle disabled");
+      document.getElementById(arrt[f-1]).setAttribute("class","buttonstyle disabled");
+points++;
+}
+document.getElementById("pp").innerHTML="POINTS="+points;
+if(points==8)
+alert("YOU WON!!!");
+
+
+}
+
+</script>
+</head>
+<body onload="disp()">
+
+<p>MEMORY GAME</p>
+<p style="color:#990099;font-weight:bolder;font-family:comic sans ms"> TIME:2 mins </p>
+
+<input type="button" class="button" id="b1" onclick="myfunc1(this.id,1)" value=" "></button>
+<input type="button" class="button button2" id="b2" onclick="myfunc1(this.id,2)" value=" "></button>
+<input type="button" class="button button3" id="b3" onclick="myfunc1(this.id,3)" value=" "></button>
+<input type="button" class="button button4" id="b4" onclick="myfunc1(this.id,4)" value=" "></button>
+<br />
+<input type="button" class="button button5" id="b5" onclick="myfunc1(this.id,5)" value=" "></button>
+<input type="button" class="button button3" id="b6" onclick="myfunc1(this.id,6)" value=" "></button>
+<input type="button" class="button button4" id="b7" onclick="myfunc1(this.id,7)" value=" "></button>
+<input type="button" class="button" id="b8" onclick="myfunc1(this.id,8)" value=" "></button>
+<br />
+<input type="button" class="button button2" id="b9" onclick="myfunc1(this.id,9)" value=" "></button>
+<input type="button" class="button button3" id="b10" onclick="myfunc1(this.id,10)" value=" "></button>
+<input type="button" class="button" id="b11" onclick="myfunc1(this.id,11)" value=" "></button>
+<input type="button" class="button button5" id="b12" onclick="myfunc1(this.id,12)" value=" "></button>
+<br />
+<input type="button" class="button button3" id="b13" onclick="myfunc1(this.id,13)" value=" "></button>
+<input type="button" class="button button5" id="b14" onclick="myfunc1(this.id,14)" value=" "></button>
+<input type="button" class="button button4" id="b15" onclick="myfunc1(this.id,15)" value=" "></button>
+<input type="button" class="button" id="b16" onclick="myfunc1(this.id,16)" value=" "></button><br />
+
+<input type="button" class="button" id="b17"  value="start" onclick="Assign()"></button>
+
+<div id="pp"></div>
+<div id="ss" style="color:#990099;font-weight:bolder;font-family:comic sans ms"></div>
+<div id="gg" style="color:#990099;font-weight:bolder;font-family:comic sans ms"></div>
+</body>
+</html>
+
